@@ -1,0 +1,460 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+  
+  body {
+    @apply bg-gray-50 text-gray-900;
+  }
+}
+
+@layer components {
+  /* Admin Card Styles */
+  .admin-card {
+    @apply bg-white rounded-xl shadow-sm border border-gray-200 p-4 sm:p-6 lg:p-8;
+  }
+  
+  .admin-card-header {
+    @apply mb-4 sm:mb-6 lg:mb-8;
+  }
+  
+  .admin-card-title {
+    @apply text-base sm:text-lg lg:text-xl font-semibold text-gray-900 mb-2;
+  }
+  
+  .admin-card-subtitle {
+    @apply text-sm sm:text-base text-gray-600;
+  }
+
+  /* Admin Button Styles */
+  .admin-btn-primary {
+    @apply bg-timesnow-red text-white px-3 py-2 sm:px-4 sm:py-2 lg:px-6 lg:py-3 rounded-lg font-medium hover:bg-red-700 transition-colors focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base;
+  }
+  
+  .admin-btn-secondary {
+    @apply bg-gray-200 text-gray-700 px-3 py-2 sm:px-4 sm:py-2 lg:px-6 lg:py-3 rounded-lg font-medium hover:bg-gray-300 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base;
+  }
+  
+  .admin-btn-danger {
+    @apply bg-red-600 text-white px-3 py-2 sm:px-4 sm:py-2 lg:px-6 lg:py-3 rounded-lg font-medium hover:bg-red-700 transition-colors focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base;
+  }
+
+  /* Admin Input Styles */
+  .admin-input {
+    @apply w-full px-3 py-2 sm:px-4 sm:py-3 lg:px-6 lg:py-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-timesnow-red focus:border-transparent transition-colors text-sm sm:text-base;
+  }
+  
+  .admin-select {
+    @apply w-full px-3 py-2 sm:px-4 sm:py-3 lg:px-6 lg:py-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-timesnow-red focus:border-transparent transition-colors bg-white text-sm sm:text-base;
+  }
+  
+  .admin-textarea {
+    @apply w-full px-3 py-2 sm:px-4 sm:py-3 lg:px-6 lg:py-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-timesnow-red focus:border-transparent transition-colors resize-y text-sm sm:text-base;
+  }
+
+  /* Admin Table Styles */
+  .admin-table {
+    @apply w-full border-collapse text-sm sm:text-base;
+  }
+  
+  .admin-table th {
+    @apply text-left py-2 px-2 sm:py-3 sm:px-4 font-semibold text-gray-700 bg-gray-50 border-b border-gray-200;
+  }
+  
+  .admin-table td {
+    @apply py-2 px-2 sm:py-3 sm:px-4 border-b border-gray-100;
+  }
+  
+  .admin-table tr:hover {
+    @apply bg-gray-50;
+  }
+
+  /* Enhanced Sidebar Styles - Fixed positioning */
+  .admin-sidebar {
+    @apply fixed left-0 top-0 h-full w-64 sm:w-72 lg:w-80 bg-white border-r border-gray-200 shadow-lg z-40;
+  }
+  
+  /* Content Area - Always adjusted for sidebar */
+  .admin-content {
+    @apply ml-0 lg:ml-64 xl:ml-80 transition-all duration-300 ease-in-out;
+  }
+  
+  .admin-content-expanded {
+    @apply ml-0 lg:ml-64 xl:ml-80;
+  }
+
+  /* Enhanced Mobile Responsive */
+  @media (max-width: 1024px) {
+    .admin-content {
+      @apply ml-0;
+    }
+    
+    .admin-sidebar {
+      @apply transform transition-transform duration-300 ease-in-out;
+    }
+    
+    .admin-sidebar-collapsed {
+      @apply -translate-x-full;
+    }
+    
+    .admin-sidebar-expanded {
+      @apply translate-x-0;
+    }
+  }
+
+  /* Enhanced Tablet Styles */
+  @media (max-width: 768px) {
+    .admin-card {
+      @apply p-4;
+    }
+    
+    .admin-card-header {
+      @apply mb-4;
+    }
+    
+    .admin-card-title {
+      @apply text-base;
+    }
+    
+    .admin-table {
+      @apply text-sm;
+    }
+    
+    .admin-table th,
+    .admin-table td {
+      @apply py-2 px-2;
+    }
+    
+    /* Mobile Form Improvements */
+    .admin-input,
+    .admin-select,
+    .admin-textarea {
+      @apply text-base;
+    }
+    
+    /* Mobile Button Improvements */
+    .admin-btn-primary,
+    .admin-btn-secondary,
+    .admin-btn-danger {
+      @apply px-3 py-2 text-sm;
+    }
+
+    /* Mobile Grid Improvements */
+    .admin-grid {
+      @apply grid-cols-1 sm:grid-cols-2;
+    }
+
+    .admin-grid-3 {
+      @apply grid-cols-1 sm:grid-cols-2 md:grid-cols-3;
+    }
+
+    .admin-grid-4 {
+      @apply grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .admin-card {
+      @apply p-3;
+    }
+    
+    .admin-table {
+      @apply text-xs;
+    }
+    
+    .admin-table th,
+    .admin-table td {
+      @apply py-1 px-1;
+    }
+    
+    /* Stack buttons vertically on very small screens */
+    .admin-btn-group {
+      @apply flex-col space-y-2 space-x-0;
+    }
+    
+    .admin-btn-group > * {
+      @apply w-full;
+    }
+
+    /* Mobile Form Stack */
+    .admin-form-stack {
+      @apply space-y-3;
+    }
+
+    .admin-form-row {
+      @apply flex-col space-y-2;
+    }
+
+    /* Mobile Navigation */
+    .admin-mobile-nav {
+      @apply fixed inset-0 z-50 bg-white;
+    }
+
+    .admin-mobile-overlay {
+      @apply fixed inset-0 z-40 bg-black bg-opacity-50;
+    }
+  }
+
+  /* Enhanced Responsive Utilities */
+  .admin-mobile-container {
+    @apply px-3 sm:px-4 md:px-6 lg:px-8;
+  }
+
+  .admin-mobile-text-sm {
+    @apply text-xs sm:text-sm md:text-base;
+  }
+
+  .admin-mobile-text-base {
+    @apply text-sm sm:text-base md:text-lg;
+  }
+
+  .admin-mobile-text-lg {
+    @apply text-base sm:text-lg md:text-xl;
+  }
+
+  .admin-mobile-text-xl {
+    @apply text-lg sm:text-xl md:text-2xl;
+  }
+
+  .admin-mobile-p {
+    @apply p-3 sm:p-4 md:p-6 lg:p-8;
+  }
+
+  .admin-mobile-py {
+    @apply py-3 sm:py-4 md:py-6 lg:py-8;
+  }
+
+  .admin-mobile-px {
+    @apply px-3 sm:px-4 md:px-6 lg:px-8;
+  }
+
+  .admin-mobile-m {
+    @apply m-3 sm:m-4 md:m-6 lg:m-8;
+  }
+
+  .admin-mobile-my {
+    @apply my-3 sm:my-4 md:my-6 lg:my-8;
+  }
+
+  .admin-mobile-mx {
+    @apply mx-3 sm:mx-4 md:mx-6 lg:mx-8;
+  }
+
+  .admin-mobile-gap {
+    @apply gap-3 sm:gap-4 md:gap-6 lg:gap-8;
+  }
+
+  .admin-mobile-gap-y {
+    @apply gap-y-3 sm:gap-y-4 md:gap-y-6 lg:gap-y-8;
+  }
+
+  .admin-mobile-gap-x {
+    @apply gap-x-3 sm:gap-x-4 md:gap-x-6 lg:gap-x-8;
+  }
+
+  /* Enhanced Mobile Grid Layouts */
+  .admin-mobile-grid {
+    @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5;
+  }
+
+  .admin-mobile-grid-2 {
+    @apply grid grid-cols-1 sm:grid-cols-2;
+  }
+
+  .admin-mobile-grid-3 {
+    @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3;
+  }
+
+  .admin-mobile-grid-4 {
+    @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4;
+  }
+
+  /* Enhanced Mobile Flex Layouts */
+  .admin-mobile-flex-col {
+    @apply flex flex-col sm:flex-row;
+  }
+
+  .admin-mobile-flex-wrap {
+    @apply flex flex-wrap;
+  }
+
+  .admin-mobile-flex-center {
+    @apply flex items-center justify-center;
+  }
+
+  .admin-mobile-flex-between {
+    @apply flex flex-col sm:flex-row items-start sm:items-center justify-start sm:justify-between gap-2 sm:gap-0;
+  }
+
+  .admin-mobile-flex-start {
+    @apply flex flex-col sm:flex-row items-start gap-2 sm:gap-4;
+  }
+
+  .admin-mobile-flex-end {
+    @apply flex flex-col sm:flex-row items-end gap-2 sm:gap-4;
+  }
+
+  /* Enhanced Mobile Button Stacks */
+  .admin-mobile-btn-stack {
+    @apply flex flex-col space-y-2 sm:flex-row sm:space-y-0 sm:space-x-2;
+  }
+
+  .admin-mobile-btn-stack-reverse {
+    @apply flex flex-col-reverse space-y-reverse space-y-2 sm:flex-row sm:space-y-0 sm:space-x-2;
+  }
+
+  /* Enhanced Mobile Form Elements */
+  .admin-mobile-form-group {
+    @apply space-y-2 sm:space-y-3 md:space-y-4;
+  }
+
+  .admin-mobile-form-row {
+    @apply flex flex-col sm:flex-row gap-2 sm:gap-4;
+  }
+
+  .admin-mobile-form-col {
+    @apply flex-1;
+  }
+
+  /* Enhanced Mobile Card Layouts */
+  .admin-mobile-card-grid {
+    @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6 lg:gap-8;
+  }
+
+  .admin-mobile-card-stack {
+    @apply space-y-3 sm:space-y-4 md:space-y-6 lg:space-y-8;
+  }
+
+  /* Enhanced Mobile Spacing */
+  .admin-mobile-section {
+    @apply py-6 sm:py-8 md:py-12 lg:py-16;
+  }
+
+  .admin-mobile-section-sm {
+    @apply py-4 sm:py-6 md:py-8 lg:py-12;
+  }
+
+  .admin-mobile-section-lg {
+    @apply py-8 sm:py-12 md:py-16 lg:py-20;
+  }
+
+  /* Enhanced Mobile Container */
+  .admin-mobile-container-fluid {
+    @apply w-full px-3 sm:px-4 md:px-6 lg:px-8;
+  }
+
+  .admin-mobile-container-sm {
+    @apply max-w-4xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8;
+  }
+
+  .admin-mobile-container-md {
+    @apply max-w-6xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8;
+  }
+
+  .admin-mobile-container-lg {
+    @apply max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8;
+  }
+
+  /* Enhanced Mobile Navigation */
+  .admin-mobile-nav-toggle {
+    @apply lg:hidden fixed top-4 left-4 z-50 p-2 bg-white rounded-lg shadow-lg border border-gray-200;
+  }
+
+  .admin-mobile-sidebar {
+    @apply fixed inset-y-0 left-0 z-40 w-64 sm:w-72 lg:w-80 bg-white border-r border-gray-200 shadow-lg transform transition-transform duration-300 ease-in-out;
+  }
+
+  .admin-mobile-sidebar-open {
+    @apply translate-x-0;
+  }
+
+  .admin-mobile-sidebar-closed {
+    @apply -translate-x-full;
+  }
+
+  /* Enhanced Mobile Overlay */
+  .admin-mobile-overlay {
+    @apply fixed inset-0 z-30 bg-black bg-opacity-50 transition-opacity duration-300;
+  }
+
+  /* Enhanced Mobile Text Alignment */
+  .admin-mobile-text-center {
+    @apply text-center sm:text-left md:text-center;
+  }
+
+  .admin-mobile-text-left {
+    @apply text-left;
+  }
+
+  .admin-mobile-text-right {
+    @apply text-right;
+  }
+
+  /* Enhanced Mobile Visibility */
+  .admin-mobile-hidden {
+    @apply hidden sm:block;
+  }
+
+  .admin-mobile-visible {
+    @apply block sm:hidden;
+  }
+
+  .admin-tablet-hidden {
+    @apply hidden md:block;
+  }
+
+  .admin-tablet-visible {
+    @apply block md:hidden;
+  }
+
+  .admin-desktop-hidden {
+    @apply hidden lg:block;
+  }
+
+  .admin-desktop-visible {
+    @apply block lg:hidden;
+  }
+
+  /* Dark Mode Support */
+  .dark .admin-card {
+    @apply bg-gray-800 border-gray-700;
+  }
+  
+  .dark .admin-card-title {
+    @apply text-gray-100;
+  }
+  
+  .dark .admin-card-subtitle {
+    @apply text-gray-400;
+  }
+  
+  .dark .admin-input,
+  .dark .admin-select,
+  .dark .admin-textarea {
+    @apply bg-gray-700 border-gray-600 text-gray-100;
+  }
+  
+  .dark .admin-table th {
+    @apply bg-gray-700 text-gray-200 border-gray-600;
+  }
+  
+  .dark .admin-table td {
+    @apply border-gray-700;
+  }
+  
+  .dark .admin-table tr:hover {
+    @apply bg-gray-700;
+  }
+
+  .dark .admin-sidebar {
+    @apply bg-gray-800 border-gray-700;
+  }
+
+  .dark .admin-mobile-sidebar {
+    @apply bg-gray-800 border-gray-700;
+  }
+}
