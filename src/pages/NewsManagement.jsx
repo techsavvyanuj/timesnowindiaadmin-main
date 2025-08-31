@@ -48,7 +48,7 @@ const NewsManagement = () => {
     fetchNews()
   }, [])
 
-  const API_BASE = 'http://localhost:4000/api'
+  const API_BASE = 'https://times-backend-ybql.onrender.com/api'
 
   const fetchNews = async () => {
     try {

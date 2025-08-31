@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const API_URL = 'http://localhost:4000/api/breaking-news';
+const API_URL = 'https://times-backend-ybql.onrender.com/api/breaking-news';
 
 const INDIAN_STATES = [
   'Andhra Pradesh',

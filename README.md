@@ -116,7 +116,7 @@ admin/
 
 4. **Open in browser**:
    ```
-   http://localhost:3001
+   https://timesnowindiaadmin-main.vercel.app
    ```
 
 ### Build for Production
