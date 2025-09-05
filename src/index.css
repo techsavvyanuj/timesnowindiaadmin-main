@@ -47,6 +47,15 @@
   .admin-input {
     @apply w-full px-3 py-2 sm:px-4 sm:py-3 lg:px-6 lg:py-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-timesnow-red focus:border-transparent transition-colors text-sm sm:text-base;
   }
+
+  /* Image Utility Styles */
+  .image-contain {
+    @apply object-contain;
+  }
+  
+  .image-cover {
+    @apply object-cover;
+  }
   
   .admin-select {
     @apply w-full px-3 py-2 sm:px-4 sm:py-3 lg:px-6 lg:py-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-timesnow-red focus:border-transparent transition-colors bg-white text-sm sm:text-base;

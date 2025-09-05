@@ -292,7 +292,7 @@ const AdsManagement = () => {
               <img
                 src={ad.image}
                 alt={ad.title}
-                className="w-full h-40 object-cover rounded-lg"
+                className="w-full h-40 object-contain rounded-lg"
               />
               <div className="absolute top-2 right-2 flex space-x-2">
                 <button

@@ -3,7 +3,6 @@ import { Link, useLocation } from 'react-router-dom'
 import { 
   Home, 
   FileText, 
-  FolderOpen, 
   Image, 
   ScrollText, 
   Settings, 
@@ -11,7 +10,8 @@ import {
   BarChart3, 
   Palette,
   Menu,
-  X
+  X,
+  Star
 } from 'lucide-react'
 
 const Sidebar = ({ isOpen, onClose }) => {
@@ -21,12 +21,9 @@ const Sidebar = ({ isOpen, onClose }) => {
     { name: 'Dashboard', href: '/dashboard', icon: Home },
     { name: 'Posters Management', href: '/posters', icon: Image },
     { name: 'Breaking News', href: '/breaking-news', icon: ScrollText },
+    { name: 'Featured Stories', href: '/featured-stories', icon: Star },
     { name: 'News Management', href: '/news', icon: FileText },
-    { name: 'Categories', href: '/categories', icon: FolderOpen },
-    { name: 'Media', href: '/media', icon: Image },
-    { name: 'Ticker', href: '/ticker', icon: ScrollText },
     { name: 'Tools Data', href: '/tools', icon: BarChart3 },
-    { name: 'Static Pages', href: '/pages', icon: FileText },
     { name: 'Ads Management', href: '/ads', icon: Palette },
     { name: 'User Management', href: '/users', icon: Users },
     { name: 'Settings', href: '/settings', icon: Settings },

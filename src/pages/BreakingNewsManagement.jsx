@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const API_URL = 'https://times-backend-ybql.onrender.com/api/breaking-news';
+const API_URL = window.location.hostname === 'localhost' 
+  ? 'http://localhost:4000/api/breaking-news' 
+  : 'https://times-backend-ybql.onrender.com/api/breaking-news';
 
 const INDIAN_STATES = [
   'Andhra Pradesh',
@@ -351,7 +353,7 @@ export default function BreakingNewsManagement() {
             className="w-full p-2 border rounded"
           />
           {formData.thumbnailPreview && (
-            <img src={formData.thumbnailPreview} alt="Thumbnail preview" className="mt-2 max-w-full h-32 object-cover rounded-md" />
+            <img src={formData.thumbnailPreview} alt="Thumbnail preview" className="mt-2 max-w-full h-32 object-contain rounded-md" />
           )}
         </div>
 

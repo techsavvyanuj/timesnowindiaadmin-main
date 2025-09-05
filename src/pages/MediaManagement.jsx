@@ -118,7 +118,7 @@ const MediaManagement = () => {
               <img
                 src={item.url}
                 alt={item.name}
-                className="w-full h-48 object-cover rounded-lg"
+                className="w-full h-48 object-contain rounded-lg"
               />
               <div className="absolute top-2 right-2">
                 <div className={`${getTypeColor(item.type)} p-2 rounded-lg`}>

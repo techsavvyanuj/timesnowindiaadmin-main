@@ -3,11 +3,7 @@ import { Routes, Route } from 'react-router-dom'
 import Login from './pages/Login'
 import Dashboard from './pages/Dashboard'
 import NewsManagement from './pages/NewsManagement'
-import CategoryManagement from './pages/CategoryManagement'
-import MediaManagement from './pages/MediaManagement'
-import TickerManagement from './pages/TickerManagement'
 import ToolsManagement from './pages/ToolsManagement'
-import StaticPagesManagement from './pages/StaticPagesManagement'
 import AdsManagement from './pages/AdsManagement'
 import UserManagement from './pages/UserManagement'
 import Settings from './pages/Settings'
@@ -15,6 +11,7 @@ import Profile from './pages/Profile'
 import PostersManagement from './pages/PostersManagement'
 import BreakingNewsManagement from './pages/BreakingNewsManagement'
 import BreakingNewsView from './pages/BreakingNewsView'
+import FeaturedStoriesManagement from './pages/FeaturedStoriesManagement'
 import AdminLayout from './layouts/AdminLayout'
 import ProtectedRoute from './components/ProtectedRoute'
 
@@ -55,6 +52,14 @@ const App = () => {
         </ProtectedRoute>
       } />
 
+      <Route path="/featured-stories" element={
+        <ProtectedRoute>
+          <AdminLayout>
+            <FeaturedStoriesManagement />
+          </AdminLayout>
+        </ProtectedRoute>
+      } />
+
       <Route path="/dashboard" element={
         <ProtectedRoute>
           <AdminLayout>
@@ -71,42 +76,10 @@ const App = () => {
         </ProtectedRoute>
       } />
 
-      <Route path="/categories" element={
-        <ProtectedRoute>
-          <AdminLayout>
-            <CategoryManagement />
-          </AdminLayout>
-        </ProtectedRoute>
-      } />
-
-      <Route path="/media" element={
-        <ProtectedRoute>
-          <AdminLayout>
-            <MediaManagement />
-          </AdminLayout>
-        </ProtectedRoute>
-      } />
-
-      <Route path="/ticker" element={
-        <ProtectedRoute>
-          <AdminLayout>
-            <TickerManagement />
-          </AdminLayout>
-        </ProtectedRoute>
-      } />
-
       <Route path="/tools" element={
         <ProtectedRoute>
           <AdminLayout>
             <ToolsManagement />
-          </AdminLayout>
-        </ProtectedRoute>
-      } />
-
-      <Route path="/pages" element={
-        <ProtectedRoute>
-          <AdminLayout>
-            <StaticPagesManagement />
           </AdminLayout>
         </ProtectedRoute>
       } />

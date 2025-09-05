@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Plus, Search, Edit, Trash2, Eye, X, Calendar, User, MapPin, Tag, Image, Video } from 'lucide-react'
+import { Plus, Search, Edit, Trash2, Eye, Filter, MapPin, Tag, Image, Video, User, Calendar, X } from 'lucide-react'
 
 const NewsManagement = () => {
   const [news, setNews] = useState([])
@@ -48,7 +48,9 @@ const NewsManagement = () => {
     fetchNews()
   }, [])
 
-  const API_BASE = 'https://times-backend-ybql.onrender.com/api'
+  const API_BASE = window.location.hostname === 'localhost' 
+    ? 'http://localhost:4000/api' 
+    : 'https://times-backend-ybql.onrender.com/api'
 
   const fetchNews = async () => {
     try {
@@ -87,19 +89,19 @@ const NewsManagement = () => {
   const handleEditNews = (newsItem) => {
     setSelectedNews(newsItem)
     setFormData({
-      title: newsItem.title,
-      category: newsItem.category,
-      subcategory: newsItem.subcategory,
-      state: newsItem.state,
-      city: newsItem.city,
-      excerpt: newsItem.excerpt,
-      content: newsItem.content,
-      tags: newsItem.tags.join(', '),
-      featured: newsItem.featured,
-      breaking: newsItem.breaking,
-      image: newsItem.image,
+      title: newsItem.title || '',
+      category: newsItem.category || '',
+      subcategory: newsItem.subcategory || '',
+      state: newsItem.state || '',
+      city: newsItem.city || '',
+      excerpt: newsItem.excerpt || '',
+      content: newsItem.content || '',
+      tags: Array.isArray(newsItem.tags) ? newsItem.tags.join(', ') : (newsItem.tags || ''),
+      featured: newsItem.featured || false,
+      breaking: newsItem.breaking || false,
+      image: newsItem.imageUrl || newsItem.image || '',
       imageFile: null,
-      imagePreview: newsItem.image || '',
+      imagePreview: newsItem.imageUrl || newsItem.image || '',
       videoUrl: newsItem.videoUrl || ''
     })
     setShowEditModal(true)
@@ -310,9 +312,9 @@ const NewsManagement = () => {
                   <td>
                     <div className="flex items-center space-x-3">
                       <img
-                        src={item.image}
+                        src={item.imageUrl || item.image}
                         alt={item.title}
-                        className="w-16 h-12 object-cover rounded-lg flex-shrink-0"
+                        className="w-16 h-12 object-contain rounded-lg flex-shrink-0"
                       />
                       <div className="flex-1 min-w-0">
                         <p className="text-sm font-medium text-gray-900 truncate">
@@ -557,8 +559,8 @@ const NewsManagement = () => {
                     Image
                   </label>
                   <input type="file" accept="image/*" onChange={handleImageChange} className="admin-input" />
-                  {formData.imagePreview && <img src={formData.imagePreview} alt="preview" className="mt-2 w-32 h-20 object-cover rounded" />}
-                  {!formData.imagePreview && formData.image && <img src={formData.image} alt="current" className="mt-2 w-32 h-20 object-cover rounded" />}
+                  {formData.imagePreview && <img src={formData.imagePreview} alt="preview" className="mt-2 w-32 h-20 object-contain rounded" />}
+                  {!formData.imagePreview && formData.image && <img src={formData.image} alt="current" className="mt-2 w-32 h-20 object-contain rounded" />}
                 </div>
 
                 {/* Video URL */}
@@ -686,20 +688,20 @@ const NewsManagement = () => {
               {/* Article Header */}
               <div className="flex flex-col sm:flex-row items-start space-y-4 sm:space-y-0 sm:space-x-4">
                 <img
-                  src={selectedNews.image}
+                  src={selectedNews.imageUrl || selectedNews.image || 'https://via.placeholder.com/400x250/cccccc/ffffff?text=News'}
                   alt={selectedNews.title}
-                  className="w-full sm:w-24 h-48 sm:h-16 object-cover rounded-lg"
+                  className="w-full sm:w-24 h-48 sm:h-16 object-contain rounded-lg"
                 />
                 <div className="flex-1 min-w-0">
                   <h3 className="text-lg font-semibold text-gray-900">{selectedNews.title}</h3>
                   <div className="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-4 mt-2 text-sm text-gray-600">
                     <span className="flex items-center space-x-1">
                       <User size={16} />
-                      <span>{selectedNews.author}</span>
+                      <span>{selectedNews.author || 'Admin'}</span>
                     </span>
                     <span className="flex items-center space-x-1">
                       <Calendar size={16} />
-                      <span>{selectedNews.publishDate}</span>
+                      <span>{selectedNews.timestamp ? new Date(selectedNews.timestamp).toLocaleDateString() : 'N/A'}</span>
                     </span>
                   </div>
                 </div>
@@ -726,7 +728,7 @@ const NewsManagement = () => {
                   <div className="space-y-2">
                     <div className="flex items-center space-x-2 text-sm text-gray-600">
                       <MapPin size={16} />
-                      <span>{selectedNews.state}</span>
+                      <span>{selectedNews.state || 'N/A'}</span>
                     </div>
                     {selectedNews.city && (
                       <div className="text-sm text-gray-600">
@@ -738,19 +740,28 @@ const NewsManagement = () => {
 
                 <div>
                   <h4 className="font-medium text-gray-900 mb-2">Status</h4>
-                  <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getStatusColor(selectedNews.status)}`}>
-                    {selectedNews.status}
+                  <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getStatusColor(selectedNews.status || 'published')}`}>
+                    {selectedNews.status || 'published'}
                   </span>
                 </div>
 
                 <div>
                   <h4 className="font-medium text-gray-900 mb-2">Tags</h4>
                   <div className="flex flex-wrap gap-2">
-                    {selectedNews.tags.map((tag, index) => (
-                      <span key={index} className="inline-flex items-center px-2 py-1 rounded-md text-xs font-medium bg-gray-100 text-gray-800">
-                        {tag}
-                      </span>
-                    ))}
+                    {selectedNews.tags && Array.isArray(selectedNews.tags) 
+                      ? selectedNews.tags.map((tag, index) => (
+                          <span key={index} className="inline-flex items-center px-2 py-1 rounded-md text-xs font-medium bg-gray-100 text-gray-800">
+                            {tag}
+                          </span>
+                        ))
+                      : selectedNews.tags 
+                        ? selectedNews.tags.split(',').map((tag, index) => (
+                            <span key={index} className="inline-flex items-center px-2 py-1 rounded-md text-xs font-medium bg-gray-100 text-gray-800">
+                              {tag.trim()}
+                            </span>
+                          ))
+                        : <span className="text-sm text-gray-500">No tags</span>
+                    }
                   </div>
                 </div>
               </div>
@@ -758,12 +769,16 @@ const NewsManagement = () => {
               {/* Article Content */}
               <div>
                 <h4 className="font-medium text-gray-900 mb-2">Excerpt</h4>
-                <p className="text-gray-700 bg-gray-50 p-4 rounded-lg">{selectedNews.excerpt}</p>
+                <p className="text-gray-700 bg-gray-50 p-4 rounded-lg">
+                  {selectedNews.excerpt || selectedNews.content?.substring(0, 200) + '...' || 'No excerpt available'}
+                </p>
               </div>
 
               <div>
                 <h4 className="font-medium text-gray-900 mb-2">Full Content</h4>
-                <p className="text-gray-700 bg-gray-50 p-4 rounded-lg">{selectedNews.content}</p>
+                <div className="text-gray-700 bg-gray-50 p-4 rounded-lg max-h-64 overflow-y-auto whitespace-pre-wrap">
+                  {selectedNews.content || 'No content available'}
+                </div>
               </div>
 
               {/* Actions */}
