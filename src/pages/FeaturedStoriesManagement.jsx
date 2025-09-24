@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 const API_URL = window.location.hostname === 'localhost' 
   ? 'http://localhost:4000/api/featured-stories' 
-  : 'https://times-backend-ybql.onrender.com/api/featured-stories';
+  : 'https://api.timesnowindia24.live/api/featured-stories';
 
 const INDIAN_STATES = [
   'Andhra Pradesh', 'Arunachal Pradesh', 'Assam', 'Bihar', 'Chhattisgarh', 'Goa', 'Gujarat',

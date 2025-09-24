@@ -1,6 +1,6 @@
 export const API_BASE_URL = window.location.hostname === 'localhost' 
   ? 'http://localhost:4000/api' 
-  : 'https://times-backend-ybql.onrender.com/api';
+  : 'https://api.timesnowindia24.live/api';
 
 export const endpoints = {
   auth: {

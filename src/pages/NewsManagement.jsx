@@ -50,7 +50,7 @@ const NewsManagement = () => {
 
   const API_BASE = window.location.hostname === 'localhost' 
     ? 'http://localhost:4000/api' 
-    : 'https://times-backend-ybql.onrender.com/api'
+  : 'https://api.timesnowindia24.live/api'
 
   const fetchNews = async () => {
     try {

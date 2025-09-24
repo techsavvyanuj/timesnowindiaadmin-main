@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 const API_URL = window.location.hostname === 'localhost' 
   ? 'http://localhost:4000/api/breaking-news' 
-  : 'https://times-backend-ybql.onrender.com/api/breaking-news';
+  : 'https://api.timesnowindia24.live/api/breaking-news';
 
 const INDIAN_STATES = [
   'Andhra Pradesh',
