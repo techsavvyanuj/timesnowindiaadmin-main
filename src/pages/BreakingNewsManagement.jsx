@@ -44,6 +44,16 @@ const INDIAN_STATES = [
   'Puducherry'
 ];
 
+const CATEGORIES = [
+  'India',
+  'World', 
+  'Business',
+  'Sports',
+  'Entertainment',
+  'Technology',
+  'Lifestyle'
+];
+
 export default function BreakingNewsManagement() {
   const navigate = useNavigate();
   const [breakingNews, setBreakingNews] = useState([]);
@@ -53,6 +63,7 @@ export default function BreakingNewsManagement() {
     headline: '',
     shortDescription: '',
     fullDescription: '',
+    category: '',
     state: '',
     video: null,
     videoPreview: '',
@@ -122,6 +133,7 @@ export default function BreakingNewsManagement() {
     formDataToSend.append('headline', formData.headline);
     formDataToSend.append('shortDescription', formData.shortDescription);
     formDataToSend.append('fullDescription', formData.fullDescription);
+    formDataToSend.append('category', formData.category);
     formDataToSend.append('state', formData.state);
     // Always append local preview video if provided (admin can supply both preview video and youtubeUrl)
     if (formData.video) {
@@ -155,6 +167,7 @@ export default function BreakingNewsManagement() {
           headline: '',
           shortDescription: '',
           fullDescription: '',
+          category: '',
           state: '',
           video: null,
           videoPreview: '',
@@ -184,6 +197,7 @@ export default function BreakingNewsManagement() {
       headline: item.headline || '',
       shortDescription: item.shortDescription || '',
       fullDescription: item.fullDescription || '',
+      category: item.category || '',
       state: item.state || '',
       video: null,
       videoPreview: item.videoUrl || '',
@@ -201,6 +215,7 @@ export default function BreakingNewsManagement() {
       headline: '',
       shortDescription: '',
       fullDescription: '',
+      category: '',
       state: '',
       video: null,
       videoPreview: '',
@@ -261,6 +276,26 @@ export default function BreakingNewsManagement() {
             className="w-full p-2 border rounded"
             required
           />
+        </div>
+
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2">
+            Category
+          </label>
+          <select
+            name="category"
+            value={formData.category}
+            onChange={handleInputChange}
+            className="w-full p-2 border rounded"
+            required
+          >
+            <option value="">Select a category</option>
+            {CATEGORIES.map((category) => (
+              <option key={category} value={category}>
+                {category}
+              </option>
+            ))}
+          </select>
         </div>
 
         <div className="mb-4">
@@ -380,6 +415,11 @@ export default function BreakingNewsManagement() {
             <div key={news.id} className="p-4">
               <h4 className="font-bold">{news.headline}</h4>
               <p className="text-gray-600 mt-1">{news.shortDescription}</p>
+              {news.category && (
+                <span className="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full mt-2">
+                  {news.category}
+                </span>
+              )}
               <div className="mt-3 space-x-3">
                 <button
                   onClick={() => handleView(news)}

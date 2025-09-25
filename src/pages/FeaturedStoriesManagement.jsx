@@ -16,8 +16,13 @@ const INDIAN_STATES = [
 ];
 
 const CATEGORIES = [
-  'Technology', 'Business', 'Lifestyle', 'Health', 'Sports', 'Entertainment', 
-  'Politics', 'Education', 'Science', 'Travel', 'Food', 'Fashion'
+  'India',
+  'World', 
+  'Business',
+  'Sports',
+  'Entertainment',
+  'Technology',
+  'Lifestyle'
 ];
 
 const FeaturedStoriesManagement = () => {
